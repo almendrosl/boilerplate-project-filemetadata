@@ -4,7 +4,10 @@
 	"description": "API project for freeCodeCamp",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "node server.js",
+		"start_local": "node -r dotenv/config server.js",
+		"dev": "cross-env NODE_ENV=development nodemon /server.js",
+		"lint":"eslint"
 	},
 	"dependencies": {
 		"express": "^5.0.0-alpha.2",
@@ -22,5 +25,13 @@
 		"hyperdev",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"cross-env": "^5.2.1",
+		"dotenv": "^8.1.0",
+		"eslint": "^6.3.0",
+		"eslint-config-airbnb-base": "^14.0.0",
+		"eslint-plugin-import": "^2.18.2",
+		"nodemon": "^1.19.1"
+	}
 }
