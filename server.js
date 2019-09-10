@@ -3,7 +3,9 @@
 /* eslint-disable linebreak-style */
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
 
+const upload = multer({ dest: 'uploads/' });
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require
   require('dotenv').config();
@@ -22,6 +24,14 @@ app.get('/', (req, res) => {
 
 app.get('/hello', (req, res) => {
   res.json({ greetings: 'Hello, API' });
+});
+
+app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
+  res.json({
+    name: req.file.originalname,
+    type: req.file.mimetype,
+    size: req.file.size,
+  });
 });
 
 app.listen(process.env.PORT || 3000, () => {
